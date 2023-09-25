@@ -7,6 +7,14 @@ resource "azurerm_resource_group" "virtual_wan" {
   name     = each.value.template.name
   location = each.value.template.location
   tags     = each.value.template.tags
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_virtual_wan" "virtual_wan" {
@@ -32,6 +40,13 @@ resource "azurerm_virtual_wan" "virtual_wan" {
     azurerm_resource_group.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_virtual_hub" "virtual_wan" {
@@ -67,6 +82,13 @@ resource "azurerm_virtual_hub" "virtual_wan" {
     azurerm_virtual_wan.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_express_route_gateway" "virtual_wan" {
@@ -92,6 +114,13 @@ resource "azurerm_express_route_gateway" "virtual_wan" {
     azurerm_virtual_hub.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_vpn_gateway" "virtual_wan" {
@@ -141,6 +170,13 @@ resource "azurerm_vpn_gateway" "virtual_wan" {
     azurerm_virtual_hub.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_firewall_policy" "virtual_wan" {
@@ -246,6 +282,13 @@ resource "azurerm_firewall_policy" "virtual_wan" {
     azurerm_resource_group.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_firewall" "virtual_wan" {
@@ -310,6 +353,13 @@ resource "azurerm_firewall" "virtual_wan" {
     azurerm_firewall_policy.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_virtual_hub_connection" "virtual_wan" {

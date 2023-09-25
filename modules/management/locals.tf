@@ -168,7 +168,7 @@ locals {
     sku_name                      = lookup(local.custom_settings_aa, "sku_name", "Basic")
     public_network_access_enabled = lookup(local.custom_settings_aa, "public_network_access_enabled", true)
     local_authentication_enabled  = lookup(local.custom_settings_aa, "local_authentication_enabled", true)
-    identity                      = lookup(local.custom_settings_aa, "identity", local.empty_list)
+    identity                      = lookup(local.custom_settings_aa, "identity", local.empty_map)
     encryption                    = lookup(local.custom_settings_aa, "encryption", local.empty_list)
     tags                          = lookup(local.custom_settings_aa, "tags", local.tags)
   }

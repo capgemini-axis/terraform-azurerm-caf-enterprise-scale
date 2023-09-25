@@ -7,6 +7,14 @@ resource "azurerm_resource_group" "management" {
   name     = each.value.template.name
   location = each.value.template.location
   tags     = each.value.template.tags
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_log_analytics_workspace" "management" {
@@ -36,6 +44,13 @@ resource "azurerm_log_analytics_workspace" "management" {
     azurerm_resource_group.management,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_log_analytics_solution" "management" {
@@ -69,6 +84,13 @@ resource "azurerm_log_analytics_solution" "management" {
     azurerm_log_analytics_linked_service.management,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_automation_account" "management" {
@@ -114,6 +136,13 @@ resource "azurerm_automation_account" "management" {
     azurerm_resource_group.management,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_log_analytics_linked_service" "management" {
