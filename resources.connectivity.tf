@@ -98,7 +98,7 @@ resource "azurerm_subnet" "connectivity" {
     azurerm_virtual_network.connectivity,
     azurerm_network_ddos_protection_plan.connectivity,
   ]
-  
+
 }
 
 resource "azurerm_network_ddos_protection_plan" "connectivity" {
@@ -621,11 +621,4 @@ resource "azurerm_virtual_network_peering" "connectivity" {
     azurerm_virtual_network.connectivity,
   ]
 
-  lifecycle {
-    ignore_changes = [
-      # Ignore changes to tags, e.g. because a management agent
-      # updates these based on some ruleset managed elsewhere.
-      tags,
-    ]
-  }
 }
