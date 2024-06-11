@@ -7,6 +7,14 @@ resource "azurerm_resource_group" "connectivity" {
   name     = each.value.template.name
   location = each.value.template.location
   tags     = each.value.template.tags
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }  
 }
 
 resource "azurerm_virtual_network" "connectivity" {
@@ -41,6 +49,13 @@ resource "azurerm_virtual_network" "connectivity" {
     azurerm_network_ddos_protection_plan.connectivity,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_subnet" "connectivity" {
@@ -104,6 +119,13 @@ resource "azurerm_network_ddos_protection_plan" "connectivity" {
     azurerm_resource_group.connectivity,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_public_ip" "connectivity" {
@@ -133,6 +155,13 @@ resource "azurerm_public_ip" "connectivity" {
     azurerm_resource_group.connectivity,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_virtual_network_gateway" "connectivity" {
@@ -235,6 +264,13 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
     azurerm_network_ddos_protection_plan.connectivity,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_firewall_policy" "connectivity" {
@@ -350,6 +386,13 @@ resource "azurerm_firewall_policy" "connectivity" {
     azurerm_resource_group.virtual_wan,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_firewall" "connectivity" {
@@ -415,6 +458,13 @@ resource "azurerm_firewall" "connectivity" {
     azurerm_firewall_policy.connectivity,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_private_dns_zone" "connectivity" {
@@ -457,6 +507,13 @@ resource "azurerm_private_dns_zone" "connectivity" {
     delete = var.resource_custom_timeouts.azurerm_private_dns_zone.delete
   }
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_dns_zone" "connectivity" {
@@ -494,6 +551,13 @@ resource "azurerm_dns_zone" "connectivity" {
     azurerm_resource_group.connectivity,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
@@ -525,6 +589,13 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
     delete = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.delete
   }
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 resource "azurerm_virtual_network_peering" "connectivity" {
