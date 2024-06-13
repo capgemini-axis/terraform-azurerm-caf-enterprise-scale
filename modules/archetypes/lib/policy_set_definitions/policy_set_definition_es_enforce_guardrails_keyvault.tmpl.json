@@ -132,7 +132,7 @@
         "type": "Integer",
         "metadata": {
           "displayName": "The minimum days before expiry",
-          "description": "Enter the days before expiration of the certificate when you want to trigger the policy action. For example, to trigger a policy action 90 days before the certificate's expiration, enter '90'."
+          "description": "Enter the days before expiration of the certificate when you want to trigger the policy action. For example, to trigger a policy action 10 days before the certificate's expiration, enter '10'."
         },
         "defaultValue": 10
       },
@@ -153,7 +153,7 @@
         "type": "Integer",
         "metadata": {
           "displayName": "The minimum days before expiry",
-          "description": "Enter the days before expiration of the certificate when you want to trigger the policy action. For example, to trigger a policy action 90 days before the certificate's expiration, enter '90'."
+          "description": "Enter the days before expiration of the certificate when you want to trigger the policy action. For example, to trigger a policy action 10 days before the certificate's expiration, enter '10'."
         },
         "defaultValue": 10
       }
